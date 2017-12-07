@@ -9,7 +9,7 @@ RUN curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-co
 
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
 RUN gpasswd -a jenkins docker
-RUN sed -i.bak '2i sudo chown jenkins:docker /var/run/docker.sock' /usr/local/bin/jenkins.sh
+RUN sed -i.bak '2i sudo chgrp docker /var/run/docker.sock' /usr/local/bin/jenkins.sh
 
 USER jenkins
 COPY plugins.txt /usr/share/jenkins/plugins.txt

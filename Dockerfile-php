@@ -3,12 +3,11 @@ LABEL maintainer="Tobias Derksen <tobias.derksen@student.fontys.nl>"
 
 USER root
 
-RUN echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && echo "@edge-com http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
-RUN apk --no-cache add curl git busybox@edge docker@edge-com shadow sudo maven
-RUN apk --no-cache add php7@edge-com php7-fpm@edge-com php7-mysqli@edge-com php7-json@edge-com php7-openssl@edge-com php7-curl@edge-com php7-redis@edge-com \
-    php7-zlib@edge-com php7-xml@edge-com php7-phar@edge-com php7-pdo@edge-com php7-pdo_mysql@edge-com php7-pdo_sqlite@edge-com php7-intl@edge-com php7-dom@edge-com php7-xmlreader@edge-com php7-ctype@edge-com \
-    php7-mbstring@edge-com php7-gd@edge-com php7-sqlite3@edge-com php7-session@edge-com php7-tokenizer@edge-com php7-simplexml@edge-com php7-xmlwriter@edge-com \
-    nodejs@edge-com nodejs-npm@edge-com yarn@edge-com
+RUN apk --no-cache --upgrade add curl git docker shadow sudo maven php7 \
+    php7-common libedit libxml2 musl pcre php7-fpm php7-mysqli php7-json php7-openssl php7-curl php7-redis \
+    php7-zlib php7-xml php7-phar php7-pdo php7-pdo_mysql php7-pdo_sqlite php7-intl php7-dom php7-xmlreader php7-ctype \
+    php7-mbstring php7-gd php7-sqlite3 php7-session php7-tokenizer php7-simplexml php7-xmlwriter \
+    nodejs nodejs-npm yarn ncurses ncurses-libs zlib
 
 RUN curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 

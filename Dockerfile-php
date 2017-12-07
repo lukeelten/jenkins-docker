@@ -1,0 +1,23 @@
+FROM jenkins/jenkins:lts-alpine
+LABEL maintainer="Tobias Derksen <tobias.derksen@student.fontys.nl>"
+
+USER root
+
+RUN echo "@edge http://dl-cdn.alpinelinux.org/alpine/edge/main" >> /etc/apk/repositories && echo "@edge-com http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN apk --no-cache add curl git busybox@edge docker@edge-com shadow sudo maven
+RUN apk --no-cache add php7@edge-com php7-fpm@edge-com php7-mysqli@edge-com php7-json@edge-com php7-openssl@edge-com php7-curl@edge-com php7-redis@edge-com \
+    php7-zlib@edge-com php7-xml@edge-com php7-phar@edge-com php7-pdo@edge-com php7-pdo_mysql@edge-com php7-pdo_sqlite@edge-com php7-intl@edge-com php7-dom@edge-com php7-xmlreader@edge-com php7-ctype@edge-com \
+    php7-mbstring@edge-com php7-gd@edge-com php7-sqlite3@edge-com php7-session@edge-com php7-tokenizer@edge-com php7-simplexml@edge-com php7-xmlwriter@edge-com \
+    nodejs@edge-com nodejs-npm@edge-com yarn@edge-com
+
+RUN curl -L https://github.com/docker/compose/releases/download/1.17.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
+
+RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN gpasswd -a jenkins docker
+RUN sed -i.bak '2i sudo chown jenkins:docker /var/run/docker.sock' /usr/local/bin/jenkins.sh
+
+USER jenkins
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
+
+VOLUME /var/jenkins_home

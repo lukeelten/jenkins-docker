@@ -29,11 +29,8 @@ jobConfigHistory:latest
 jquery-detached:latest
 jquery:latest
 junit:latest
-ldap:latest
 mailer:latest
 mask-passwords:latest
-matrix-auth:latest
-matrix-project:latest
 maven-plugin:latest
 multiple-scms:latest
 parameterized-trigger:latest
@@ -67,3 +64,14 @@ workflow-scm-step:latest
 workflow-step-api:latest
 workflow-support:latest
 jacoco:latest
+checkstyle:latest
+cloverphp:latest
+crap4j:latest
+pmd:latest
+warnings:latest
+xunit:latest
+violations:latest
+plot:latest
+jdepend:latest
+dry:latest
+

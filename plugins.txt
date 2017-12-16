@@ -74,4 +74,3 @@ violations:latest
 plot:latest
 jdepend:latest
 dry:latest
-

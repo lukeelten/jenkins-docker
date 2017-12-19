@@ -8,7 +8,8 @@ RUN apt-get -y update && apt-get -y install curl git sudo apt-transport-https ca
       && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable" \
       && apt-get -y update \
       && apt-get -y install docker-ce \
-      && curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose \
+      && curl -L https://github.com/docker/compose/releases/download/1.17.0/docker-compose-`uname -s`-`uname -m` -o /usr/bin/docker-compose \
+      && chmod +x /usr/bin/docker-compose \
       && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
 
 RUN gpasswd -a jenkins docker && echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers

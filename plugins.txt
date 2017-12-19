@@ -13,7 +13,6 @@ envinject:latest
 external-monitor-job:latest
 git:latest
 git-client:latest
-git-server:latest
 git-parameter:latest
 git-tag-message:latest
 github:latest
@@ -33,7 +32,6 @@ mailer:latest
 mask-passwords:latest
 maven-plugin:latest
 multiple-scms:latest
-parameterized-trigger:latest
 pipeline-build-step:latest
 pipeline-graph-analysis:latest
 pipeline-input-step:latest

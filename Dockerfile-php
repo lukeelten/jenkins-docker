@@ -17,7 +17,7 @@ RUN apt-get -y update && apt-get -y install curl git sudo apt-transport-https ca
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/sury.list \
       && curl https://packages.sury.org/php/apt.gpg | apt-key add - \
       && apt-get -y update \
-      && apt-get -y install php7.1-cli php7.1-common php7.1-curl php7.1-gd php7.1-intl php7.1-json php7.1-mbstring php7.1-sqlite3 php7.1-mysql php7.1-xml phpunit \
+      && apt-get -y install php7.1-cli php7.1-common php7.1-curl php7.1-gd php7.1-intl php7.1-json php7.1-mbstring php7.1-sqlite3 php7.1-mysql php7.1-xml php-xdebug phpunit \
       && php -r "copy('https://getcomposer.org/installer', '/tmp/composer-setup.php');" \
       && php /tmp/composer-setup.php --install-dir=/usr/bin --filename=composer \
       && rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*
